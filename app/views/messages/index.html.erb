@@ -1,3 +1,42 @@
+<head>
+ <!-- BootstrapのCss読み込み -->
+         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+         <!-- Bootstrap読み込み -->
+         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+         <!-- BootstrapのJS読み込み -->
+         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+.logo {
+             max-width: 240px;
+             border: 5px solid #111;
+             margin: 70px 70px;
+             text-align: center;
+             border-radius: 50%;
+         }
+
+
+    .mozimozi{
+        font-size: 20px;
+        color: #666;
+    }
+    
+    .kaigyou{
+        font-size: 5px;
+    }
+    
+</style>
+
+
+</head>
+
+
+
+<div class="header">
+    <img class="logo" src="takosan.jpg" alt="本人画像" />
+</div>
+
+
+
 <div class="panel panel-default">
     <div class="panel-heading">
         メッセージ一覧
@@ -11,12 +50,16 @@
         <% end %>
     </div>
 </div>
+<div class=mozimozi>
 
 <%= form_for(Message.new) do |f| %>
 名前：
-<%= f.text_field :name %>
+<%= f.text_field :name %><br>
+<div class=kaigyou>
+<br>
+</div>
 内容；
-<%= f.text_field :body%>
+<%= f.text_area :body%>
 <%= f.submit class: "btn btn-sm btn-primary" %>
 <% end %>
-
+</div>
