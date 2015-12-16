@@ -1,48 +1,10 @@
-<head>
- <!-- BootstrapのCss読み込み -->
-         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-         <!-- Bootstrap読み込み -->
-         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-         <!-- BootstrapのJS読み込み -->
-         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<style>
-.logo {
-             max-width: 240px;
-             border: 5px solid #111;
-             margin: 70px 70px;
-             text-align: center;
-             border-radius: 50%;
-         }
-
-
-    .mozimozi{
-        font-size: 20px;
-        color: #666;
-    }
-    
-    .kaigyou{
-        font-size: 5px;
-    }
-    
-</style>
-
-
-</head>
-
-
-
-<div class="header">
-    <img class="logo" src="takosan.jpg" alt="本人画像" />
-</div>
-
-
 
 <div class="panel panel-default">
     <div class="panel-heading">
         メッセージ一覧
     </div>
     
-    <div class="panel-body">
+    <div class="panel-body">/
         <% @messages.each do |message| %>
         <span class="label label-info"><%= message.name %></span>
         <%= message.body %>
@@ -50,30 +12,31 @@
         <% end %>
     </div>
 </div>
-<div class=mozimozi>
+<% #部分テンプレートを読み込んでいる　%>
 
-<%= form_for(Message.new) do |f| %>
-<% if @message.errors.present? %>
-<div class="alert alert-danger">
-    <%= alert %>
-    <ul>
-        <% @message.errors.full_messages.each do |full_message| %>
-        <li>
-            <%= full_message %>
-        </li>
-        <% end %>
-    </ul>
-</div>
+
+<%= form_for(@message) do |f| %>
+    <% if @message.errors.present? %>
+        <div class="alert alert-danger">
+            <%= alert %>
+            <ul>
+                <% @message.errors.full_messages.each do |full_message| %>
+                    <li>
+                        <%= full_message %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+        <label for="massage_name">名前</label>
+        <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <label  for="message_body">内容</label>
+        <%= f.text_area :body, class: 'form-control' %>
+    </div>
+    <%= f.submit class: "btn btn-sm btn-primary" %>
 <% end %>
 
-
-名前：
-<%= f.text_field :name %><br>
-<div class=kaigyou>
-<br>
-</div>
-内容；
-<%= f.text_area :body%>
-<%= f.submit class: "btn btn-sm btn-primary" %>
-<% end %>
 </div>
