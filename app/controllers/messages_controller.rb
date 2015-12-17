@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
   end
   
   def update
-    if @message.updare(message_params)
+    if @message.update(message_params)
       #　保存に成功した場合はトップページへリダイレクト
       redirect_to root_path , notice: 'メッセージを編集しました'
     else
@@ -35,10 +35,10 @@ class MessagesController < ApplicationController
   end
  private
     def message_params
-      params.require(:message).permit(:name, :body)
+      params.require(:message).permit(:name, :body, :age)
     end
     
     def set_message
-      @messafe = message/find(params[:id])
+      @message = Message.find(params[:id])
     end
 end
